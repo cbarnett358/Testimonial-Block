@@ -4,7 +4,9 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { useBlockProps, RichText } from '@wordpress/block-editor';
+import {background} from "../../../../wp-includes/js/codemirror/csslint";
+
 
 /**
  * The save function defines the way in which the different attributes should
@@ -15,10 +17,41 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
+export default function save({ attributes }) {
+
+	const { content, align, backgroundColor, cbLinkColor, cbLinkBackground, textColor, cbLink, linkLabel, hasLinkNofollow } = attributes;
+
+	const blockProps = useBlockProps.save( {
+		className: `has-text-align-${ align }`
+	} );
+
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Testimonial Block – hello from the saved content!' }
-		</p>
+		<div
+			{ ...blockProps }
+			style={ { backgroundColor: backgroundColor } }
+		>
+			<p { ...useBlockProps.save() }>
+				{ 'Instructor Block – hello from the saved content!' }
+			</p>
+
+
+
+			<RichText.Content
+				tagName="p"
+				value={ content }
+				style={ { color: textColor } }
+			/>
+			<p>
+
+				<a
+					href={ cbLink }
+					className="cb-button"
+					style={ { textAlign: align, cbLinkBackground, backgroundColor: backgroundColor, color: cbLinkColor } }
+					rel={ hasLinkNofollow ? "nofollow" : "noopener noreferrer" }
+				>
+					{ linkLabel }
+				</a>
+			</p>
+		</div>
 	);
 }

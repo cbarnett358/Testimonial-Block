@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "title": "Testimonial Block",
   "category": "design",
-  "icon": "qoute",
+  "icon": "format-quote",
   "description": "A block that shows testimonials",
   "supports": {
     "html": false
@@ -13,5 +13,61 @@
   "textdomain": "cb-testimonial",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
-  "style": "file:./style-index.css"
+  "style": "file:./style-index.css",
+  "keywords": [
+    "instructors",
+    "teachers",
+    "people"
+  ],
+  "styles": [
+    {
+      "name": "default",
+      "label": "Default",
+      "isDefault": true
+    },
+    {
+      "name": "border",
+      "label": "Border"
+    }
+  ],
+  "attributes": {
+    "content": {
+      "type": "string",
+      "source": "html",
+      "selector": "p",
+      "align": {
+        "type": "string",
+        "default": "none"
+      },
+      "backgroundColor": {
+        "type": "string"
+      },
+      "textColor": {
+        "type": "string"
+      },
+      "cbLink": {
+        "type": "string",
+        "default": ""
+      },
+      "cbLinkBackground": {
+        "type": "string"
+      },
+      "cbLinkColor": {
+        "type": "string",
+        "default": ""
+      },
+      "imgUrl": {
+        "type": "string",
+        "default": "https://placehold.it/150"
+      },
+      "linkLabel": {
+        "type": "string",
+        "default": "Check it out!"
+      },
+      "hasLinkNofollow": {
+        "type": "boolean",
+        "default": false
+      }
+    }
+  }
 }
